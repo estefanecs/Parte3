@@ -6,11 +6,19 @@
 </head>
 <body>
     <h1>Lista de livros</h1>
-    <form action="/livro" method="GET">
-        <input type="hidden" id="isbn" name="isbn" value="978-65-59811-39-7"><br>
-        <br><input type="submit" value="Ver livro" />
-    </form>
+    {% for livro in livros["livros"] %}
+        <div>
+            <h1>{{livro.nome}}</h1> <br>
+            Autor: {{livro.autor}} <br>
+            Editora: {{livro.editora}} <br>
+            Categoria: {{livro.categoria}} <br>
+            Numero de páginas: {{livro.numero_paginas}} <br>
+            <form action="/livro" method="GET">
+                <input type="hidden" id="isbn" name="isbn" value={{livro.isbn}}><br>
+                <br><input type="submit" value="Ver livro" />
+            </form>
 
-    {{livros}}
+        </div>
+    {% endfor %}
 </body>
 </html>

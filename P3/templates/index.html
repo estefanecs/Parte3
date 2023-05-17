@@ -3,19 +3,185 @@
 <head>
     <meta charset='utf-8'>
     <title>Início</title>
+    <script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
+    <script src="https://www.koolchart.com/demo/KoolChart/JS/KoolChart.js"></script>
+    <link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css"/>
 </head>
 <body>
-    <h1>Ranking...</h1>
-    {{data}}
+    <div id="chartContainer" style="width: 100%; height: 360px;"></div>
+    <script src="canvasjs.min.js"></script>
 
+    <h1>Ranking...</h1>
     <form action="/" method="GET">
         Ano: <input type="text" id="ano" name="ano"><br>
-        Mes: <input type="text" id="mes" name="mes">
         <br><input type="submit" value="Enviar" />
     </form>
+
+    {{data}}
+
 
     <form action="/livros" method="GET">
     <button>Livros</button>
     </form>
+
+    teste
+    <div id="chartHolder" style="height:380px; width:100%;"></div>
+
+
+    <script>
+    var chartVars = "KoolOnLoadCallFunction=chartReadyHandler";
+    var series = "";
+    var chart;
+    KoolChart.create("chart1", "chartHolder", chartVars, "100%", "100%");
+
+    function event(request){
+        chart = {{data}}
+        series = getSeries();
+        console.log(request);
+    }
+    function chartReadyHandler(id) {
+        document.getElementById(id).setLayout(layoutStr);
+        document.getElementById(id).setData(data);
+        console.log(data);
+    }
+
+    function getSeries(){
+        
+    }
+
+    var layoutStr ='<KoolChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
+            +'<Options>'
+                +'<Caption text="Ranking dos livros mais vendidos por mês" />'
+                +'<Legend />'
+            +'</Options>'
+            +'<NumberFormatter id="numFmt" precision="0"/>'
+            +'<Bump2DChart showDataTips="true" dataTipDisplayMode="axis">'
+                +'<horizontalAxis>'
+                    +'<CategoryAxis categoryField="Month"/>'
+                +'</horizontalAxis>'
+                +'<verticalAxis>'
+                    +'<LinearAxis/>'
+                +'</verticalAxis>'
+                +'<series>'
+                    +'<Bump2DSeries id="bump1" yField="É assim que começa" displayName="É assim que começa" labelPosition="inside" form="segment">'
+                        +'<showDataEffect>'
+                            + '<SeriesClip duration="1000"/>'
+                        +'</showDataEffect>'
+                    +'</Bump2DSeries>'
+                    +'<Bump2DSeries id="bump2" yField="É assim que acaba" displayName="É assim que acaba" labelPosition="inside" form="segment">'
+                        +'<showDataEffect>'
+                            + '<SeriesClip duration="1000"/>'
+                        +'</showDataEffect>'
+                    +'</Bump2DSeries>'
+                    +'<Bump2DSeries id="bump3" yField="A mandíbula de Caim" displayName="A mandíbula de Caim" labelPosition="inside" form="segment">'
+                        +'<showDataEffect>'
+                            + '<SeriesClip duration="1000"/>'
+                        +'</showDataEffect>'
+                    +'</Bump2DSeries>'
+                +'</series>'
+            +'</Bump2DChart>'
+        +'</KoolChart>';
+
+
+        var data= [
+        {
+            "mes": '1/2023',
+            'É assim que começa': 1,
+            'É assim que acaba': 2,
+            'A mandíbula de Caim': 3,
+            'Café com Deus pai': 4,
+            'Mais esperto que o diabo': 5,
+            'O poder da autorresponsabilidade': 6,
+            'O que sobra': 7,
+            'Mulheres que correm com os lobos (capa dura)': 8,
+            'A biblioteca da meia-noite': 9,
+            'Minutos de sabedoria': 10,
+            'Como fazer amigos e influenciar pessoas': 11,
+            'A hipótese do amor': 12,
+            'Amor & gelato': 13,
+            'Os segredos da mente milionária': 14,
+            'Todas as suas (im)perfeições': 15,
+            'Quem pensa enriquece: o legado': 16,
+            'Tudo é rio': 17,
+            'Verity': 18,
+            'Torto arado': 19,
+            'Os sete maridos de Evelyn Hugo': 20 
+        }];
+    </script>
+
+    <script>
+    window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer", {
+    title:{
+      text: "Life Expectancy"  
+    },
+    exportEnabled: true,
+    theme: "light2",
+    
+    axisY: {
+      title: "Years"
+    },
+    legend: {
+      cursor: "pointer",
+      itemclick: toggleDataSeries
+    },
+    toolTip: {
+      shared: true
+    },
+    data: [
+      {        
+        type: "line",
+        name: "Brazil",
+        color: "#079647",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,###.0# years",
+        dataPoints: {{ data[0]|safe }}
+      },
+      {        
+        type: "line",
+        name: "China",
+        color: "#F7D701",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,###.0# years",
+        dataPoints: {{ data[1]|safe }}
+      },
+      {        
+        type: "line",
+        name: "India",
+        color: "#1976D2",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,###.0# years",
+        dataPoints: {{ data[2]|safe }}
+      },
+      {        
+        type: "line",
+        name: "Japan",
+        color: "#B6032C",
+        showInLegend: true,
+        markerSize: 0,
+        yValueFormatString: "#,###.0# years",
+        dataPoints: {{ data[3]|safe }}
+      },
+ 
+    ]
+  });
+  chart.render();
+ 
+  function toggleDataSeries(e) {
+      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+          e.dataSeries.visible = false;
+      } else {
+          e.dataSeries.visible = true;
+      }
+      e.chart.render();
+  }
+}
+</script> 
 </body>
+
+
 </html>
+
