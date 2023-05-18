@@ -25,7 +25,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Ranking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Ranking</a></li>
                   </ul>
             </div>
         </div>
@@ -55,23 +55,7 @@
                         </div>
                     </div>
                 </li>
-                {% endfor %}
-                <li class="timeline-inverted">
-                    <form action="/livro" method="GET">
-                        <input type="hidden" id="isbn" name="isbn" value={{livro.isbn}}>
-                        <input class="timeline-image rounded-circle" type="submit" value="Ver livro" />
-                    </form>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>{{livro.nome}}</h4>
-                            <h6 class="subheading">{{livro.autor}}</h6>
-                            
-                            <div class="timeline-body"><p class="text-muted"><strong>Editora:</strong> {{livro.editora}}</p></div>
-                            <div class="timeline-body"><p class="text-muted"><strong> Categoria:</strong> {{livro.categoria}}</p></div>
-                            <div class="timeline-body"><p class="text-muted"><strong> Numero de páginas:</strong> {{livro.numero_paginas}}</p></div>
-                        </div>
-                    </div>
-                </li>
+                {% endfor %}  
             </ul>
         </div>
         </section>
