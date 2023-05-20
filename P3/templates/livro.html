@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <title>Livro</title>
@@ -12,41 +13,42 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='styles.css') }}" rel="stylesheet" />
 </head>
+
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-       <div class="container">
-           <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top"><img src="{{ url_for('static',filename='assets/img/navbar-logo.svg') }}" alt="..." /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                Menu
                <i class="fas fa-bars ms-1"></i>
            </button>
-           <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Ranking</a></li>
                     <form action="/livros" method="GET">
                         <li class="nav-item"><button class="btn-nav nav-link">Livros</button></li>
-                      </form>
-                 </ul>
-           </div>
-       </div>
-   </nav>
-
-   <section class="mt-5 page-section" id="services">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">{{livro.nome}}</h2>
-            <h3 class="section-subheading text-muted">{{livro.resumo}}.</h3>
-            <p class="text-muted"> <strong>Autor:</strong> {{livro.autor}} <br></p>
-            <p class="text-muted"><strong> Editora:</strong> {{livro.editora}}</p>
-            <p class="text-muted"><strong>Categoria:</strong> {{livro.categoria}}</p>
-            <p class="text-muted"><strong> Numero de páginas:</strong> {{livro.numero_paginas}}</p>
-            <p class="text-muted"></p>
+                    </form>
+                </ul>
+            </div>
         </div>
-        LISTA DE EXEMPLARES É NO GRAFICO
-    </div>
+    </nav>
+
+    <section class="mt-5 page-section" id="services">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">{{livro.nome}}</h2>
+                <h3 class="section-subheading text-muted">{{livro.resumo}}.</h3>
+                <p class="text-muted"> <strong>Autor:</strong> {{livro.autor}} <br></p>
+                <p class="text-muted"><strong> Editora:</strong> {{livro.editora}}</p>
+                <p class="text-muted"><strong>Categoria:</strong> {{livro.categoria}}</p>
+                <p class="text-muted"><strong> Numero de páginas:</strong> {{livro.numero_paginas}}</p>
+                <p class="text-muted"></p>
+            </div>
+            LISTA DE EXEMPLARES É NO GRAFICO
+        </div>
     </section>
 
     <!-- Bootstrap core JS-->
@@ -54,4 +56,5 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
+
 </html>

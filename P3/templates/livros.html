@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <title>Livros</title>
@@ -12,13 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="styles.css" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='styles.css') }}" rel="stylesheet" />
 </head>
+
 <body id="page-top">
-     <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+            <a class="navbar-brand" href="#page-top"><img src="{{ url_for('static',filename='assets/img/navbar-logo.svg') }}" alt="..." /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
@@ -26,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Ranking</a></li>
-                  </ul>
+                </ul>
             </div>
         </div>
     </nav>
@@ -43,36 +45,38 @@
                         <input type="hidden" id="isbn" name="isbn" value={{livro.isbn}}>
                         <input class="timeline-image rounded-circle" type="submit" value="Ver livro" />
                     </form>
-                        
+
                     <div class="timeline-panel">
                         <div class="timeline-heading">
                             <h4>{{livro.nome}}</h4>
                             <h6 class="subheading">{{livro.autor}}</h6>
-                            
-                            <div class="timeline-body"><p class="text-muted"><strong>Editora:</strong> {{livro.editora}}</p></div>
-                            <div class="timeline-body"><p class="text-muted"><strong> Categoria:</strong> {{livro.categoria}}</p></div>
-                            <div class="timeline-body"><p class="text-muted"><strong> Numero de páginas:</strong> {{livro.numero_paginas}}</p></div>
+
+                            <div class="timeline-body">
+                                <p class="text-muted"><strong>Editora:</strong> {{livro.editora}}</p>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted"><strong> Categoria:</strong> {{livro.categoria}}</p>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted"><strong> Numero de páginas:</strong> {{livro.numero_paginas}}</p>
+                            </div>
                         </div>
                     </div>
                 </li>
-                {% endfor %}  
+                {% endfor %}
             </ul>
         </div>
-        </section>
+    </section>
 
     {% for livro in livros["livros"] %}
-        <div>
-            <h1>{{livro.nome}}</h1> <br>
-            Autor: {{livro.autor}} <br>
-            Editora: {{livro.editora}} <br>
-            Categoria: {{livro.categoria}} <br>
-            Numero de páginas: {{livro.numero_paginas}} <br>
-            <form action="/livro" method="GET">
-                <input type="hidden" id="isbn" name="isbn" value={{livro.isbn}}><br>
-                <br><input type="submit" value="Ver livro" />
-            </form>
+    <div>
+        <h1>{{livro.nome}}</h1> <br> Autor: {{livro.autor}} <br> Editora: {{livro.editora}} <br> Categoria: {{livro.categoria}} <br> Numero de páginas: {{livro.numero_paginas}} <br>
+        <form action="/livro" method="GET">
+            <input type="hidden" id="isbn" name="isbn" value={{livro.isbn}}><br>
+            <br><input type="submit" value="Ver livro" />
+        </form>
 
-        </div>
+    </div>
     {% endfor %}
 
     <!-- Bootstrap core JS-->
@@ -80,4 +84,5 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
+
 </html>
