@@ -3095,6 +3095,27 @@ fieldset:disabled .btn {
     --bs-btn-disabled-border-color: #ffc800;
 }
 
+.input-primary {
+    color: #000;
+    border-color: #ffc800;
+    background-color: #ffc800;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.input-primary:hover {
+    color: #fff;
+    background-color: #d9aa00;
+    border-color: #d9aa00;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .btn-secondary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #6c757d;

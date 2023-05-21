@@ -3,7 +3,7 @@
 
 <head>
     <meta charset='utf-8'>
-    <title>Início</title>
+    <title>Ranking</title>
     <script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
     <script src="https://www.koolchart.com/demo/KoolChart/JS/KoolChart.js"></script>
     <link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css" />
@@ -44,15 +44,25 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Ranking</h2>
                 <h3 class="section-subheading text-muted">Livros mais vendidos</h3>
-                <img src={{img}}>
             </div>
         </div>
 
-        <form action="/" method="GET">
-            Ano: <input type="text" id="ano" name="ano"><br>
-            <br><input type="submit" value="Enviar" />
-        </form>
+        <div class="buttons">
+            <form action="/" method="GET">
+                <input type="hidden" id="ano" name="ano" value="2022">
+                <input class="input-primary pr-1" type="submit" value="2022" />
+            </form>
 
+            <form action="/" method="GET">
+                <input type="hidden" id="ano" name="ano" value="2023">
+                <input class="input-primary" type="submit" value="2023" />
+            </form>
+        </div>
+
+        <div class="text-center">
+            <h5 class="section-heading text-uppercase">{{ano}}</h5>
+            <img src={{img}}>
+        </div>
 
     </section>
     <!-- Bootstrap core JS-->

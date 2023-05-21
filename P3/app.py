@@ -24,7 +24,7 @@ def index():
             rows_data = getData(data_atual.month-1, year)
 
         img = plotBump(rows_data)
-        resp =  make_response(render_template("index.html", data="livro_mes", img = img))
+        resp =  make_response(render_template("index.html", data="livro_mes", img = img, ano=year))
         return resp
     else :
         return render_template("index.html")
