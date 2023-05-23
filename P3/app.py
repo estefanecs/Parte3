@@ -23,8 +23,8 @@ def index():
         else:
             rows_data = getData(data_atual.month-1, year)
 
-        img = plotBump(rows_data)
-        resp =  make_response(render_template("index.html", data="livro_mes", img = img, ano=year))
+       # img = plotBump(rows_data)
+        resp =  make_response(render_template("index.html", data=rows_data, ano=year))
         return resp
     else :
         return render_template("index.html")
@@ -32,13 +32,10 @@ def index():
 def getData(month_limit, year):
     rows = []
     for month in range(1,month_limit):
-        params = '?mes='+str(month)+'&ano='+year+'&rota=getGraficoGeral'
+        params = '?mes='+str(month)+'&ano='+year+'&rota=getLivrosPorMes'
         response = requests.get(url+params)
         data = response.json()
-        #livro_mes.append(data)
-        values = list(data.values())
-        rows.append(np.array( [float('nan') if x==0 else x for x in values] ))
-
+        rows.append(data)
     return rows
 
 def plotBump(rows):
