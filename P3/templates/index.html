@@ -49,6 +49,16 @@
 
         <div class="buttons">
             <form action="/" method="GET">
+                <input type="hidden" id="ano" name="ano" value="2020">
+                <input class="input-primary pr-1" type="submit" value="2020" />
+            </form>
+
+            <form action="/" method="GET">
+                <input type="hidden" id="ano" name="ano" value="2021">
+                <input class="input-primary pr-1" type="submit" value="2021" />
+            </form>
+
+            <form action="/" method="GET">
                 <input type="hidden" id="ano" name="ano" value="2022">
                 <input class="input-primary pr-1" type="submit" value="2022" />
             </form>
@@ -61,19 +71,15 @@
 
         <div class="text-center">
             <h5 class="mt-5 section-heading text-uppercase">{{ano}}</h5>
-            <img src={{img}}>
-            
             <table class="table-primary table-bordered">
-                {% for %}
+                {% for livros in data %}
                 <tr>
-                    <td>"MES"</td>
-                    {% for %}
-                        <td><img  class="table-img" src="" /></td>
+                     {% for livro in livros["ranking"] %}
+                        <td><img  class="table-img" src={{livro.capa}} /></td>
                     {% endfor %}
                 </tr>
                 {% endfor %}
             </table>
-            
         </div>
 
     </section>
