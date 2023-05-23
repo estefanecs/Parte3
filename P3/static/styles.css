@@ -207,7 +207,13 @@ abbr[title] {
 }
 
 .table-img {
-   
+    width: 70px;
+    height: 120px;
+}
+
+.month-designer {
+    color: #000;
+    background-color: #ffc800;
 }
 
 address {

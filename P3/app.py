@@ -6,8 +6,6 @@ from io import BytesIO
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
-from bumpplot import bumpchart
 
 app = Flask(__name__, template_folder='templates')
 url = 'https://script.google.com/macros/s/AKfycbxzW3QGiAbYIialGTzt2sAZkj7AzskLCABYf-gCmWL70S79Fh6pIZlHvILatc7qqAp6/exec'
@@ -21,7 +19,7 @@ def index():
         if int(year) < data_atual.year:
             rows_data = getData(13, year)
         else:
-            rows_data = getData(data_atual.month-1, year)
+            rows_data = getData(data_atual.month, year)
 
        # img = plotBump(rows_data)
         resp =  make_response(render_template("index.html", data=rows_data, ano=year))
@@ -37,26 +35,6 @@ def getData(month_limit, year):
         data = response.json()
         rows.append(data)
     return rows
-
-def plotBump(rows):
-    
-    buf = BytesIO()
-    dt = np.concatenate([rows], axis= 0)
-    response = requests.get(url+'?rota=getNomesLivros')
-    columns = response.json()
-    
-    df = pd.DataFrame(data= dt, columns= columns['livros'])
-    
-    plt.figure(figsize=(len( columns['livros']), 13))
-    fig, ax = plt.subplots()
-    bumpchart(df, show_rank_axis= True, scatter= True, holes= True,
-        line_args= {"linewidth": 5, "alpha": 0.5}, scatter_args= {"s": 100, "alpha": 0.8})
-    plt.plot()
-    fig.savefig(buf, format="png")
-
-    encoded = base64.b64encode(buf.getvalue()).decode('utf-8')
-    img = f'data:image/png;base64,{encoded}'
-    return img
 
 @app.route('/livros')
 def livros():

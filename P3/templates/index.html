@@ -4,10 +4,6 @@
 <head>
     <meta charset='utf-8'>
     <title>Ranking</title>
-    <script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
-    <script src="https://www.koolchart.com/demo/KoolChart/JS/KoolChart.js"></script>
-    <link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -72,8 +68,10 @@
         <div class="text-center">
             <h5 class="mt-5 section-heading text-uppercase">{{ano}}</h5>
             <table class="table-primary table-bordered">
+                
                 {% for livros in data %}
                 <tr>
+                    <td class="month-designer">{{livros.mes}}</td>
                      {% for livro in livros["ranking"] %}
                         <td><img  class="table-img" src={{livro.capa}} /></td>
                     {% endfor %}
